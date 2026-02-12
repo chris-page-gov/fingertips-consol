@@ -1,0 +1,26 @@
+[
+  {
+    "indicator_id": 101,
+    "indicator_name": "Smoking prevalence",
+    "profile_name": "Wider determinants",
+    "area_code": "E10000031",
+    "area_name": "Warwickshire",
+    "latest_value": 16.2,
+    "england_value": 13.8,
+    "trend": "worsening",
+    "benchmark": "worse_than_england",
+    "notes": ["Requires targeted cessation support"]
+  },
+  {
+    "indicator_id": 202,
+    "indicator_name": "NHS health checks uptake",
+    "profile_name": "Healthcare",
+    "area_code": "E10000031",
+    "area_name": "Warwickshire",
+    "latest_value": 54.5,
+    "england_value": 49.8,
+    "trend": "improving",
+    "benchmark": "better_than_england",
+    "notes": ["Sustained improvement over previous cycle"]
+  }
+]
