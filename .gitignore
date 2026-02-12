@@ -6,5 +6,6 @@ __pycache__/
 htmlcov/
 *.egg-info/
 *.pyc
+assets/output/
 .env.local
 .DS_Store

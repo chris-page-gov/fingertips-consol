@@ -39,10 +39,14 @@ Fingertips Consol is a public-health analytics app for Warwickshire monitoring. 
 - Keep docs and code paths aligned; avoid stale references.
 
 ## Open Product Decisions
-Canonical unresolved decisions live in:
+Decision analysis and recommendation set live in:
 - `docs/open-questions.md`
+- `docs/open-questions-decision-ui.html` (selection/export interface)
+- `src/fingertips_consol/decision_defaults.py` (current implementation defaults)
 
 ## Current Baseline (as of 2026-02-12)
 - Python scaffold implemented with CLI, core modules, and tests.
 - Report generation works from JSON payload input.
-- Live Fingertips endpoint mapping and significance methodology are pending.
+- Live prototype mode is implemented in CLI (`--live-prototype`) for Warwickshire + districts.
+- API retry/backoff and full-profile mode (`--max-indicators 0`) are implemented.
+- Remaining hardening: final polarity `99` benchmark rule and QA/approval pipeline.

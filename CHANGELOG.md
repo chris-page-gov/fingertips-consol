@@ -17,6 +17,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 - Repository guidance now documents TDD-first workflow and enforced coverage expectations.
+- Live Fingertips prototype workflow using official API endpoints.
+- `scripts/run_live_prototype.sh` helper to execute the live prototype quickly.
+- `docs/prototype.md` documenting endpoint usage, defaults, and prototype limitations.
+- `docs/fingertips-api-intro-tutorial.md` with API design/function/history/future context and repo onboarding walkthrough.
+- CLI live mode (`--live-prototype`) with configurable profile/area settings.
+- Workflow tests for trend and benchmark mapping in live prototype logic.
+- API client retry/backoff support for timeout, 429, and 5xx responses.
+- CI-based England benchmark fallback when source significance is unavailable.
+- Retry-behavior tests for Fingertips API client.
+- Full-coverage mode with `--max-indicators 0`.
+- Structured decision defaults module (`decision_defaults.py`) mirroring recommendations in `docs/open-questions.md`.
+- CLI support to print decision defaults (`--print-decision-defaults`).
+- Tests for decision defaults and environment/config fallback behavior.
+- Live prototype district-code validation against canonical Warwickshire defaults with run-summary diagnostics.
 
 ## [0.1.0] - 2026-02-12
 

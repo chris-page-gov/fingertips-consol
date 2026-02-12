@@ -49,8 +49,33 @@ Generate reports from local JSON input:
   --output-dir assets/output
 ```
 
+Generate a live-data prototype report from Fingertips API (Warwickshire + districts):
+
+```bash
+.venv/bin/python -m fingertips_consol.cli \
+  --live-prototype \
+  --output-dir assets/output/live-prototype \
+  --max-indicators 120
+```
+
+Use `--max-indicators 0` to include all available indicators in the selected profile.
+
+Equivalent helper script:
+
+```bash
+scripts/run_live_prototype.sh assets/output/live-prototype 120
+```
+
+Print the current implementation defaults for open product decisions:
+
+```bash
+.venv/bin/python -m fingertips_consol.cli --print-decision-defaults
+```
+
 ## Notes
 
 - This is intentionally a bootstrap. API integration and governance controls are stubbed with clear extension points.
 - See `docs/open-questions.md` for decisions needed to complete implementation.
+- See `docs/fingertips-api-intro-tutorial.md` for a researched Fingertips API intro + onboarding tutorial for this repo.
+- See `docs/prototype.md` for live prototype endpoint and mapping details.
 - Use `scripts/update_progress.sh "<note>"` to append timestamped updates to `PROGRESS.md`.
