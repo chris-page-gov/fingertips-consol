@@ -22,23 +22,29 @@ Move from scaffold to production-ready Fingertips ingestion and statistically ro
 - Added CI-based fallback for England benchmark classification when significance codes are absent.
 - Added full-coverage mode via `--max-indicators 0`.
 - Added ingestion retry tests and expanded workflow tests.
+- Expanded `docs/open-questions.md` with researched options and recommendations.
+- Added `docs/open-questions-decision-ui.html` for decision capture and JSON export.
+- Added code-level decision defaults and CLI output (`--print-decision-defaults`).
+- Added canonical Warwickshire district defaults with live-run validation diagnostics.
+- Added tests for decision defaults and config environment fallback behavior.
 
 ## Validation Evidence
 - `make lint`: pass
-- `make test`: pass (18 tests)
+- `make test`: pass (24 tests)
 
 ## In Progress
 - Validating benchmark handling for `BOB` polarity indicators.
+- Translating recommended open-question defaults into approved product policy.
 
 ## Next Up
 1. Resolve final business rule for `BOB` polarity benchmark interpretation.
 2. Add integration fixture tests for live endpoint response shapes.
-3. Add report delivery format and analyst review workflow.
-4. Define routine schedule and notification routing to PH teams.
+3. Implement HTML-first delivery output path and review/sign-off workflow state.
+4. Implement routine schedule and stakeholder routing from decision defaults.
 5. Add automated QA gate checks before dissemination.
 
 ## Risks and Blockers
-- Product decisions in `docs/open-questions.md` are unresolved and may alter implementation.
+- Product decisions are documented with recommendations but still require formal sign-off.
 - Statistical definition ambiguity can create inconsistent outputs if not standardized early.
 
 ## Agent Handoff Checklist

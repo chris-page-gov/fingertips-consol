@@ -21,6 +21,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - CI-based England benchmark fallback when source significance is unavailable.
 - Retry-behavior tests for Fingertips API client.
 - Full-coverage mode with `--max-indicators 0`.
+- Structured decision defaults module (`decision_defaults.py`) mirroring recommendations in `docs/open-questions.md`.
+- CLI support to print decision defaults (`--print-decision-defaults`).
+- Tests for decision defaults and environment/config fallback behavior.
+- Live prototype district-code validation against canonical Warwickshire defaults with run-summary diagnostics.
 
 ## [0.1.0] - 2026-02-12
 
