@@ -11,6 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - `PROGRESS.md` for live execution status and handoff continuity.
 - `CHANGELOG.md` for notable change tracking.
 - `scripts/update_progress.sh` to update the progress date and append timestamped activity notes.
+- Coverage gate at 95% via `pytest-cov` configuration in `pyproject.toml`.
+- `make tdd` command for fast red/green cycles.
+- New tests for CLI, config, ingest client, notifications grouping, and additional analysis branches.
+
+### Changed
+- Repository guidance now documents TDD-first workflow and enforced coverage expectations.
 - Live Fingertips prototype workflow using official API endpoints.
 - `scripts/run_live_prototype.sh` helper to execute the live prototype quickly.
 - `docs/prototype.md` documenting endpoint usage, defaults, and prototype limitations.

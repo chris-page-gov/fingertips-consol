@@ -15,6 +15,13 @@ Move from scaffold to production-ready Fingertips ingestion and statistically ro
 - Added sample input and routine runner script.
 - Added initial test suite and validated quality gates.
 - Added draft specification and architecture docs.
+- Enforced coverage threshold at 95% in test configuration.
+- Added `make tdd` command and documented red/green/refactor workflow.
+- Expanded test suite to cover CLI, config, ingest, notifications, and missing analysis branches.
+
+## Validation Evidence
+- `make lint`: pass
+- `make test`: pass (23 tests, 100% coverage; gate: 95%)
 - Implemented first live-data prototype workflow against Fingertips API.
 - Added live CLI mode and prototype runner script.
 - Added endpoint and assumptions documentation for prototype behavior.

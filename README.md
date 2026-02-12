@@ -24,9 +24,22 @@ Lightweight analytics and monitoring scaffold for Fingertips public health indic
 
 ```bash
 make setup
+make tdd
 make test
 make lint
 ```
+
+`make test` enforces a minimum total coverage of 95%.
+
+## Development workflow (TDD)
+
+Use a red/green/refactor loop for each behavior change:
+
+1. Add or update a failing test under `tests/`.
+2. Run `make tdd` for fast feedback (`--maxfail=1`).
+3. Implement the smallest code change to pass.
+4. Refactor while keeping tests green.
+5. Run `make test && make lint` before opening a PR.
 
 Generate reports from local JSON input:
 

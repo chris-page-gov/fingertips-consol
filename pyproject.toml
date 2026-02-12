@@ -15,6 +15,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=8.0,<9",
+  "pytest-cov>=7.0,<8",
   "ruff>=0.6,<1",
 ]
 
@@ -24,6 +25,14 @@ where = ["src"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+addopts = "--cov=fingertips_consol --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["fingertips_consol"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
 
 [tool.ruff]
 line-length = 100

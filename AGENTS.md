@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is currently a clean bootstrap with no committed source files yet. Keep the root minimal and organize new work by purpose:
+Keep the root minimal and organize work by purpose:
 - `src/` application or library code
 - `tests/` automated tests mirroring `src/` structure
 - `scripts/` repeatable developer/CI utilities
@@ -11,15 +11,16 @@ This repository is currently a clean bootstrap with no committed source files ye
 Prefer small, focused modules and avoid deep nesting unless it improves clarity.
 
 ## Build, Test, and Development Commands
-There is no build system configured yet. When adding one, expose a small standard command set and document it in both `README.md` and this file.
+Use the existing `Makefile` command set and keep both this file and `README.md` aligned when changing it.
 
-Suggested baseline commands to add:
 - `make setup` installs dependencies and local tooling
+- `make tdd` runs tests in fast-feedback mode (`--maxfail=1`) for red/green cycles
 - `make test` runs the full test suite
 - `make lint` runs format/lint checks
 - `make dev` starts local development mode
 
-Until then, use simple repo checks like `ls -la` and `git status` before opening PRs.
+Quality gate:
+- `make test` enforces a minimum total coverage threshold of 95%.
 
 ## Coding Style & Naming Conventions
 Adopt formatter-first workflows and commit formatter config with the first language/toolchain PR.
@@ -29,10 +30,11 @@ Adopt formatter-first workflows and commit formatter config with the first langu
 - Prefer explicit imports and avoid unused code
 
 ## Testing Guidelines
-No testing framework is configured yet. Add tests in the same PR as new behavior.
+Use pytest and follow TDD for behavior changes (red -> green -> refactor).
 - Mirror source layout under `tests/`
 - Name tests by behavior (examples: `user-profile.test.ts`, `test_user_profile.py`)
 - Include at least one success case and one failure/edge case per feature
+- Start each change by writing or updating a failing test, then implement the smallest passing change
 
 ## Commit & Pull Request Guidelines
 Git history is not established here yet; adopt Conventional Commits from the start:
