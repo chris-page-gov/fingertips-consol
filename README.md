@@ -20,6 +20,16 @@ Lightweight analytics and monitoring scaffold for Fingertips public health indic
 - `docs/` specification, architecture, and open questions
 - `assets/` fixtures and static resources
 
+## Documentation
+
+- User guide: `docs/user-guide.md`
+- Step-by-step tutorial: `docs/tutorial.md`
+- Product specification: `docs/specification.md`
+- Architecture overview: `docs/architecture.md`
+- Open product decisions: `docs/open-questions.md`
+- Idea backlog: `docs/ideas.md`
+- Execution context and handoff: `CONTEXT.md`, `PROGRESS.md`, `CHANGELOG.md`
+
 ## Quick start
 
 ```bash
@@ -71,6 +81,10 @@ Print the current implementation defaults for open product decisions:
 ```bash
 .venv/bin/python -m fingertips_consol.cli --print-decision-defaults
 ```
+
+## Release version
+
+Current package version: `0.1.1`
 
 ## Notes
 

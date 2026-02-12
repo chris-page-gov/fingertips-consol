@@ -1,7 +1,7 @@
 # PROGRESS
 
 ## Status
-- Phase: Bootstrap / Skeleton
+- Phase: Bootstrap / Skeleton (Release 0.1.1)
 - Overall: In Progress
 - Last updated: 2026-02-12
 
@@ -18,10 +18,6 @@ Move from scaffold to production-ready Fingertips ingestion and statistically ro
 - Enforced coverage threshold at 95% in test configuration.
 - Added `make tdd` command and documented red/green/refactor workflow.
 - Expanded test suite to cover CLI, config, ingest, notifications, and missing analysis branches.
-
-## Validation Evidence
-- `make lint`: pass
-- `make test`: pass (23 tests, 100% coverage; gate: 95%)
 - Implemented first live-data prototype workflow against Fingertips API.
 - Added live CLI mode and prototype runner script.
 - Added endpoint and assumptions documentation for prototype behavior.
@@ -34,10 +30,15 @@ Move from scaffold to production-ready Fingertips ingestion and statistically ro
 - Added code-level decision defaults and CLI output (`--print-decision-defaults`).
 - Added canonical Warwickshire district defaults with live-run validation diagnostics.
 - Added tests for decision defaults and config environment fallback behavior.
+- Removed duplicate specification content from `docs/ideas.md` and converted it to an idea backlog.
+- Added beginner-facing documentation (`docs/user-guide.md`, `docs/tutorial.md`).
+- Standardized version source to project metadata to reduce release drift risk.
 
 ## Validation Evidence
 - `make lint`: pass
-- `make test`: pass (24 tests)
+- `make test`: pass
+- `python -m build`: pass (generated `dist/fingertips_consol-0.1.1.tar.gz` and wheel)
+- `twine check dist/*`: pass
 
 ## In Progress
 - Validating benchmark handling for `BOB` polarity indicators.

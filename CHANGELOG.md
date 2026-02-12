@@ -6,7 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-02-12
+
 ### Added
+- `docs/user-guide.md` with novice-friendly setup, usage, and troubleshooting guidance.
+- `docs/tutorial.md` with a step-by-step first-run walkthrough.
 - `CONTEXT.md` for durable architecture and operating context.
 - `PROGRESS.md` for live execution status and handoff continuity.
 - `CHANGELOG.md` for notable change tracking.
@@ -31,6 +35,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - CLI support to print decision defaults (`--print-decision-defaults`).
 - Tests for decision defaults and environment/config fallback behavior.
 - Live prototype district-code validation against canonical Warwickshire defaults with run-summary diagnostics.
+- Version handling now uses package metadata in `src/fingertips_consol/__init__.py` to avoid duplicate manual version updates.
+- `docs/ideas.md` is now a true idea backlog and no longer duplicates specification content.
+- `README.md` now includes a documentation index and current release version reference.
 
 ## [0.1.0] - 2026-02-12
 

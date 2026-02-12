@@ -9,3 +9,7 @@ htmlcov/
 assets/output/
 .env.local
 .DS_Store
+.vscode/
+dist/
+build/
+assets/output/
