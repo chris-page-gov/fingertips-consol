@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Questions Decision UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Fraunces:opsz,wght@9..144,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f8f7;
+      --ink: #16302b;
+      --muted: #49625d;
+      --card: #ffffff;
+      --line: #c7d6d2;
+      --accent: #0d7a6a;
+      --accent-2: #ee7f31;
+      --ok: #1f8f4d;
+      --shadow: 0 10px 30px rgba(8, 56, 48, 0.08);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 380px at 85% -5%, rgba(13, 122, 106, 0.16), transparent 60%),
+        radial-gradient(800px 280px at 0% 0%, rgba(238, 127, 49, 0.14), transparent 60%),
+        var(--bg);
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 36px;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #0d7a6a, #0a5d52);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.01em;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      max-width: 70ch;
+      opacity: 0.95;
+    }
+
+    .hero a {
+      color: #fff4d6;
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .status {
+      margin-left: auto;
+      align-self: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      animation: rise 300ms ease both;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .hint {
+      margin: 6px 0 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .options {
+      display: grid;
+      gap: 8px;
+    }
+
+    .option {
+      display: grid;
+      grid-template-columns: 22px 1fr auto;
+      gap: 8px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fbfdfc;
+    }
+
+    .option.recommended {
+      border-color: #9bd3bf;
+      background: #f1faf6;
+    }
+
+    .badge {
+      align-self: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #e8f8ef;
+      color: var(--ok);
+      border: 1px solid #bfe6cd;
+    }
+
+    .option-title {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .option-desc {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 66px;
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      font: inherit;
+      resize: vertical;
+      background: #fff;
+    }
+
+    .summary {
+      margin-top: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .summary pre {
+      margin: 0;
+      max-height: 280px;
+      overflow: auto;
+      background: #f8fbfa;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Open Questions Decision UI</h1>
+      <p>Select one option per question, add short notes, then export your agreed decisions as JSON. Background recommendations are documented in <a href="./open-questions.md">open-questions.md</a>.</p>
+    </section>
+
+    <div class="toolbar">
+      <button id="applyRecommended" class="btn-secondary" type="button">Apply Recommended Defaults</button>
+      <button id="saveLocal" class="btn-secondary" type="button">Save Locally</button>
+      <button id="exportJson" class="btn-primary" type="button">Export Decisions JSON</button>
+      <button id="copySummary" class="btn-secondary" type="button">Copy Summary</button>
+      <span id="status" class="status">No local save yet.</span>
+    </div>
+
+    <div id="questions" class="grid" aria-live="polite"></div>
+
+    <section class="summary">
+      <h2>Current Selection</h2>
+      <pre id="summaryText"></pre>
+    </section>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "fingertips-open-questions-decisions-v1";
+
+    const QUESTION_SET = [
+      {
+        id: "q1_endpoints",
+        title: "Q1. Fingertips endpoint/version set",
+        guidance: "Recommended: use Swagger v1 granular endpoints (option A), with bulk endpoints as optional optimization.",
+        options: [
+          { id: "A", label: "Granular v1 endpoints", description: "Profile/group/metadata/specific latest data endpoints.", recommended: true },
+          { id: "B", label: "Bulk v1 latest-data endpoints", description: "All indicators in profile group per area call." },
+          { id: "C", label: "Mixed legacy endpoint set", description: "Blend old/new endpoint styles." }
+        ]
+      },
+      {
+        id: "q2_warwickshire_areas",
+        title: "Q2. Canonical Warwickshire area list",
+        guidance: "Recommended: hybrid baseline list plus runtime API validation.",
+        options: [
+          { id: "A", label: "Static list only", description: "Hard-coded district/borough and county codes." },
+          { id: "B", label: "Dynamic list only", description: "Resolve all child areas at runtime." },
+          { id: "C", label: "Hybrid list + validation", description: "Keep fixed defaults and validate from API each run.", recommended: true }
+        ]
+      },
+      {
+        id: "q3_better_worse_logic",
+        title: "Q3. Better/Worse statistical method",
+        guidance: "Recommended: hybrid precedence rule with source significance first.",
+        options: [
+          { id: "A", label: "Source significance only", description: "Use Sig[4] and comparator_significances only." },
+          { id: "B", label: "Confidence interval rule", description: "Use CI overlap/non-overlap versus England." },
+          { id: "C", label: "Custom threshold rule", description: "Use fixed value differences when significance missing." },
+          { id: "D", label: "Hybrid precedence", description: "Source Sig, then CI fallback, then threshold fallback.", recommended: true }
+        ]
+      },
+      {
+        id: "q4_delivery_format",
+        title: "Q4. Report delivery format",
+        guidance: "Recommended: HTML primary, Markdown canonical, PDF only when specifically needed.",
+        options: [
+          { id: "A", label: "Markdown primary", description: "Deliver markdown directly." },
+          { id: "B", label: "HTML primary", description: "Accessible web-first output.", recommended: true },
+          { id: "C", label: "PDF primary", description: "Pack-style distribution first." },
+          { id: "D", label: "Email body primary", description: "Send core report in email text." }
+        ]
+      },
+      {
+        id: "q5_review_approval",
+        title: "Q5. Review and approval workflow",
+        guidance: "Recommended: two-stage QA and named sign-off before dissemination.",
+        options: [
+          { id: "A", label: "Auto-publish", description: "No human review gate." },
+          { id: "B", label: "Single analyst check", description: "One review step before sharing." },
+          { id: "C", label: "Two-stage sign-off", description: "Automated QA + analyst review + approver sign-off.", recommended: true }
+        ]
+      },
+      {
+        id: "q6_cadence_triggers",
+        title: "Q6. Routine cadence and triggers",
+        guidance: "Recommended: weekly schedule with data-change and on-demand triggers.",
+        options: [
+          { id: "A", label: "Daily routine", description: "Run every day." },
+          { id: "B", label: "Weekly routine", description: "Run weekly, with on-demand support.", recommended: true },
+          { id: "C", label: "Monthly routine", description: "Run monthly only." },
+          { id: "D", label: "Event-driven only", description: "Run only when updates/requests occur." }
+        ]
+      },
+      {
+        id: "q7_stakeholder_mapping",
+        title: "Q7. Stakeholder-to-profile routing",
+        guidance: "Recommended: theme-based routing by stakeholder group.",
+        options: [
+          { id: "A", label: "Single shared profile set", description: "Same profile basket for all stakeholders." },
+          { id: "B", label: "Theme-based mapping", description: "Route indicators by team theme and profile key.", recommended: true },
+          { id: "C", label: "Manual each run", description: "Assign profile routing by analyst per report." }
+        ]
+      }
+    ];
+
+    function recommendedOptionId(question) {
+      const option = question.options.find((o) => o.recommended);
+      return option ? option.id : question.options[0].id;
+    }
+
+    function defaultDecisionState() {
+      const state = {};
+      for (const q of QUESTION_SET) {
+        state[q.id] = {
+          selectedOption: recommendedOptionId(q),
+          notes: ""
+        };
+      }
+      return state;
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultDecisionState();
+        const parsed = JSON.parse(raw);
+        return { ...defaultDecisionState(), ...parsed };
+      } catch {
+        return defaultDecisionState();
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2));
+      const now = new Date();
+      statusEl.textContent = `Saved locally at ${now.toLocaleString("en-GB")}.`;
+    }
+
+    function applyRecommended() {
+      state = defaultDecisionState();
+      render();
+      saveState();
+    }
+
+    function currentPayload() {
+      return {
+        generatedAt: new Date().toISOString(),
+        sourceDocument: "docs/open-questions.md",
+        decisions: QUESTION_SET.map((q) => {
+          const selected = state[q.id]?.selectedOption || recommendedOptionId(q);
+          const selectedOption = q.options.find((o) => o.id === selected);
+          return {
+            questionId: q.id,
+            questionTitle: q.title,
+            selectedOptionId: selected,
+            selectedOptionLabel: selectedOption ? selectedOption.label : "",
+            notes: (state[q.id]?.notes || "").trim()
+          };
+        })
+      };
+    }
+
+    function updateSummary() {
+      summaryEl.textContent = JSON.stringify(currentPayload(), null, 2);
+    }
+
+    function exportJson() {
+      const blob = new Blob([JSON.stringify(currentPayload(), null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      const ts = new Date().toISOString().replace(/[:]/g, "-");
+      anchor.href = url;
+      anchor.download = `open-questions-decisions-${ts}.json`;
+      anchor.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function copySummary() {
+      try {
+        await navigator.clipboard.writeText(summaryEl.textContent);
+        statusEl.textContent = "Summary copied to clipboard.";
+      } catch {
+        statusEl.textContent = "Clipboard copy failed in this browser.";
+      }
+    }
+
+    function renderQuestion(q) {
+      const saved = state[q.id] || { selectedOption: recommendedOptionId(q), notes: "" };
+      const card = document.createElement("section");
+      card.className = "card";
+
+      const title = document.createElement("h2");
+      title.textContent = q.title;
+      card.appendChild(title);
+
+      const hint = document.createElement("p");
+      hint.className = "hint";
+      hint.textContent = q.guidance;
+      card.appendChild(hint);
+
+      const options = document.createElement("div");
+      options.className = "options";
+
+      for (const option of q.options) {
+        const label = document.createElement("label");
+        label.className = `option${option.recommended ? " recommended" : ""}`;
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = q.id;
+        input.value = option.id;
+        input.checked = saved.selectedOption === option.id;
+        input.addEventListener("change", () => {
+          state[q.id] = { ...state[q.id], selectedOption: option.id };
+          updateSummary();
+        });
+
+        const textWrap = document.createElement("div");
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "option-title";
+        titleSpan.textContent = `${option.id}. ${option.label}`;
+
+        const descSpan = document.createElement("span");
+        descSpan.className = "option-desc";
+        descSpan.textContent = option.description;
+
+        textWrap.appendChild(titleSpan);
+        textWrap.appendChild(descSpan);
+
+        const right = document.createElement("div");
+        if (option.recommended) {
+          const badge = document.createElement("span");
+          badge.className = "badge";
+          badge.textContent = "Recommended";
+          right.appendChild(badge);
+        }
+
+        label.appendChild(input);
+        label.appendChild(textWrap);
+        label.appendChild(right);
+        options.appendChild(label);
+      }
+
+      card.appendChild(options);
+
+      const notes = document.createElement("textarea");
+      notes.placeholder = "Decision notes (optional)";
+      notes.value = saved.notes || "";
+      notes.addEventListener("input", () => {
+        state[q.id] = { ...state[q.id], notes: notes.value };
+        updateSummary();
+      });
+      card.appendChild(notes);
+
+      return card;
+    }
+
+    function render() {
+      questionsEl.innerHTML = "";
+      for (const q of QUESTION_SET) {
+        questionsEl.appendChild(renderQuestion(q));
+      }
+      updateSummary();
+    }
+
+    let state = loadState();
+
+    const questionsEl = document.getElementById("questions");
+    const summaryEl = document.getElementById("summaryText");
+    const statusEl = document.getElementById("status");
+
+    document.getElementById("applyRecommended").addEventListener("click", applyRecommended);
+    document.getElementById("saveLocal").addEventListener("click", saveState);
+    document.getElementById("exportJson").addEventListener("click", exportJson);
+    document.getElementById("copySummary").addEventListener("click", copySummary);
+
+    render();
+  </script>
+</body>
+</html>

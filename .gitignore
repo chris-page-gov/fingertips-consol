@@ -4,5 +4,6 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 *.pyc
+assets/output/
 .env.local
 .DS_Store
