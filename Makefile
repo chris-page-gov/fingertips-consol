@@ -2,7 +2,7 @@ PYTHON ?= python3
 VENV ?= .venv
 BIN := $(VENV)/bin
 
-.PHONY: setup test lint dev clean
+.PHONY: setup test lint dev tdd clean
 
 setup:
 	$(PYTHON) -m venv $(VENV)
@@ -11,6 +11,9 @@ setup:
 
 test:
 	$(BIN)/pytest -q
+
+tdd:
+	$(BIN)/pytest -q --maxfail=1
 
 lint:
 	$(BIN)/ruff check src tests

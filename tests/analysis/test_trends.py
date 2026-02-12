@@ -15,3 +15,12 @@ def test_classify_trend_stable_within_tolerance() -> None:
 def test_classify_trend_raises_on_invalid_direction() -> None:
     with pytest.raises(ValueError):
         classify_trend(11.0, 10.0, "sideways")
+
+
+def test_classify_trend_raises_on_negative_tolerance() -> None:
+    with pytest.raises(ValueError):
+        classify_trend(11.0, 10.0, "up", tolerance=-0.01)
+
+
+def test_classify_trend_improving_when_downward_direction_and_value_falls() -> None:
+    assert classify_trend(9.0, 10.0, "down") == TrendClass.IMPROVING
